@@ -6,16 +6,35 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from './pages/Root';
+import ErrorPage from './pages/error-page';
+import Menu from './pages/Menu';
+import MonsterList from './pages/MonsterList';
+import MonsterProvider from './components/context/MonsterProvider';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>
-  }
+    element: <Root/>,
+    errorElement: <ErrorPage/>
+  },
+  {
+    path: "/menu",
+    element: <Menu/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      {
+        path: "/menu/list",
+        element: <MonsterList/>
+      },
+    ]
+  },
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <MonsterProvider>
+      <RouterProvider router={router}/>
+    </MonsterProvider>
   </React.StrictMode>,
 )
