@@ -1,13 +1,18 @@
+import { MonsterContext } from "@/components/context/MonsterContext";
 import { Button } from "@/components/ui/button";
+import { useContext } from "react";
 import { useNavigate, useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
+  const { dispatch } = useContext(MonsterContext)
   const error = useRouteError();
   console.error(error);
   const navigate = useNavigate()
+  
 
   const handleClick = () => {
     navigate('/menu')
+    dispatch({ type: 'TOGGLE_EDIT'})
   }
 
   return (

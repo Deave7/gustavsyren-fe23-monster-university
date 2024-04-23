@@ -20,6 +20,8 @@ export type Monster = {
     num_tentacles?: number;
     num_mouths?: number;
     num_tails?: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any
   };
 
 export type MonsterState = {

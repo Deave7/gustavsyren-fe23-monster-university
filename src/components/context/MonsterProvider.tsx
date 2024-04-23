@@ -5,6 +5,7 @@ export type Action =
   | { type: 'ADD'; payload: Monster }
   | { type: 'DELETE'; payload: string}
   | { type: 'TOGGLE_EDIT'; }
+  | { type: 'EDIT'; payload: Monster}
 
 const monsterReducer = (state: MonsterState, action: Action): MonsterState => {
     switch (action.type) {
@@ -19,6 +20,18 @@ const monsterReducer = (state: MonsterState, action: Action): MonsterState => {
             return {
                 ...state, editMode: !state.editMode
             }
+        case 'EDIT': {
+            return {
+                ...state,
+                monsters: state.monsters.map((monster) => {
+                    if(monster.id === action.payload.id) {
+                        return action.payload
+                    }
+                    return monster
+                })
+            }
+        }
+           
         default:
             throw new Error('Wrong action type')
     }
