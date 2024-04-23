@@ -10,6 +10,7 @@ import ErrorPage from './pages/error-page';
 import Menu from './pages/Menu';
 import MonsterList from './pages/MonsterList';
 import MonsterProvider from './components/context/MonsterProvider';
+import MonsterEdit from './pages/MonsterEdit';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/menu/list",
-        element: <MonsterList/>
+        element: <MonsterList/>,
+       
+      },
+      {
+        path: "/menu/edit",
+        element: <MonsterEdit/>
       },
     ]
   },
