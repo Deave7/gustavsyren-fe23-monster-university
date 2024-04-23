@@ -24,6 +24,7 @@ export type Monster = {
 
 export type MonsterState = {
     monsters: Monster[]
+    editMode: boolean
 }
 
 export const initialMonsterState: MonsterState = {
@@ -169,14 +170,20 @@ export const initialMonsterState: MonsterState = {
           "origin": "Shadewood",
           "num_eyes": 2,
           "num_tentacles": 6
-        }
-      ]
+        },
+      ],
+      editMode: false
 }
+
+
+
+
 
 export const MonsterContext = createContext<{
   state: MonsterState
-  dispatch: React.Dispatch<Action>}>
+  dispatch: React.Dispatch<Action>
+}>
 ({
   state: initialMonsterState,
-  dispatch: () => null
+  dispatch: () => null,
 })

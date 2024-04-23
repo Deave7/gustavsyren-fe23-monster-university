@@ -29,7 +29,7 @@ const router = createBrowserRouter([
        
       },
       {
-        path: "/menu/edit",
+        path: "/menu/edit/:id",
         element: <MonsterEdit/>
       },
     ]

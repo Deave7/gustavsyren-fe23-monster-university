@@ -11,16 +11,19 @@ function MonsterList() {
                 <div>
                 {state.monsters.map((monster) => (
                     <MonsterCard
-                    key={monster.id}
-                    id={monster.id} 
-                    name={`${monster.first_name} ${monster.last_name}`} 
-                    num_eyes={monster.num_eyes} 
-                    num_mouths={monster.num_mouths} 
-                    num_arms={monster.num_arms}
-                    num_wings={monster.num_wings}
-                    num_tentacles={monster.num_tentacles}
-                    num_tails={monster.num_tails}
-                    />
+                        key={monster.id}
+                        id={monster.id}
+                        name={`${monster.first_name} ${monster.last_name}`}
+                        num_eyes={monster.num_eyes}
+                        num_mouths={monster.num_mouths}
+                        num_arms={monster.num_arms}
+                        num_wings={monster.num_wings}
+                        num_tentacles={monster.num_tentacles}
+                        num_tails={monster.num_tails}
+                        origin={monster.origin}
+                        scienceAbility={monster.abilities.science}
+                        magicAbility={monster.abilities.magic} 
+                        description={monster.description}/>
                 ))}
                 </div>
             </div>
