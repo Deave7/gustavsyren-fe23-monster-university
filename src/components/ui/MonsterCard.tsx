@@ -1,6 +1,10 @@
 import { Button } from "./button";
+import { useContext } from "react";
+import { MonsterContext } from "../context/MonsterContext";
+
 
 interface MonsterCardProps {
+    id: string
     name: string;
     num_eyes: number;
     num_mouths?: number;
@@ -10,9 +14,17 @@ interface MonsterCardProps {
     num_tails?: number;
   }
 
-  const MonsterCard: React.FC<MonsterCardProps> = ({ name, num_eyes, num_mouths, num_arms, num_wings, num_tentacles, num_tails}) => {
+  
+
+  const MonsterCard: React.FC<MonsterCardProps> = ({id, name, num_eyes, num_mouths, num_arms, num_wings, num_tentacles, num_tails}) => {
+    const { dispatch } = useContext(MonsterContext)
+    
+    const handleDelete = (id: string) => {
+      dispatch({ type: 'DELETE', payload: id})
+    }
+    
     return ( 
-        <div className="bg-primary text-white rounded-lg shadow-md p-4 mb-2">
+        <div id={id} className="bg-primary text-white rounded-lg shadow-md p-4 mb-2">
         <ul>
           <li className="list-disc ml-4 mb-2"><span className="font-bold">Name:</span> {name}</li> 
           <ul className="ml-6 list-none">
@@ -26,7 +38,7 @@ interface MonsterCardProps {
         </ul>
         <div className="flex gap-24 justify-center p-1">
             <Button variant={"secondary"}>Edit</Button>
-            <Button variant={"destructive"}>Delete</Button>
+            <Button variant={"destructive"} onClick={() => handleDelete(id)}>Delete</Button>
         </div>
       </div>
     );

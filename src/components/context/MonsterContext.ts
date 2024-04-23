@@ -1,6 +1,10 @@
-import { createContext } from "react"
 
-type Monster = {
+import { createContext } from "react"
+import { Action } from "./MonsterProvider";
+import uuid from "react-uuid";
+
+export type Monster = {
+    id: string
     first_name: string;
     last_name: string;
     description: string;
@@ -18,13 +22,14 @@ type Monster = {
     num_tails?: number;
   };
 
-type MonsterState = {
+export type MonsterState = {
     monsters: Monster[]
 }
 
 export const initialMonsterState: MonsterState = {
     monsters: [
         {
+          "id": uuid(),
           "first_name": "Fuzzy",
           "last_name": "Sparklehorn",
           "description": "A fluffy monster with rainbow-colored fur and sparkling horns.",
@@ -38,6 +43,7 @@ export const initialMonsterState: MonsterState = {
           "num_arms": 2
         },
         {
+          "id": uuid(),
           "first_name": "Whiskers",
           "last_name": "Glimmerscale",
           "description": "A winged monster with iridescent scales and shimmering eyes.",
@@ -51,6 +57,7 @@ export const initialMonsterState: MonsterState = {
           "num_arms": 2
         },
         {
+          "id": uuid(),
           "first_name": "Squiggle",
           "last_name": "Tentapuff",
           "description": "A squid-like monster with a puffy body and tentacles covered in soft fuzz.",
@@ -64,6 +71,7 @@ export const initialMonsterState: MonsterState = {
           "num_mouths": 1
         },
         {
+          "id": uuid(),
           "first_name": "Blaze",
           "last_name": "Emberclaw",
           "description": "A fiery monster with flaming mane and ember-covered claws.",
@@ -78,6 +86,7 @@ export const initialMonsterState: MonsterState = {
           "num_tails": 1
         },
         {
+          "id": uuid(),
           "first_name": "Misty",
           "last_name": "Moonwing",
           "description": "An ethereal monster with translucent wings and a glowing aura.",
@@ -91,6 +100,7 @@ export const initialMonsterState: MonsterState = {
           "num_arms": 2
         },
         {
+          "id": uuid(),
           "first_name": "Giggles",
           "last_name": "Snugglepuff",
           "description": "A cuddly monster with soft fur and an infectious laugh.",
@@ -104,6 +114,7 @@ export const initialMonsterState: MonsterState = {
           "num_tails": 1
         },
         {
+          "id": uuid(),
           "first_name": "Spike",
           "last_name": "Razorclaw",
           "description": "A spiky monster with sharp claws and a protective shell.",
@@ -118,6 +129,7 @@ export const initialMonsterState: MonsterState = {
           "num_tails": 1
         },
         {
+          "id": uuid(),
           "first_name": "Bubbles",
           "last_name": "Glowfin",
           "description": "A bubbly monster with luminescent scales and a bubbly personality.",
@@ -131,6 +143,7 @@ export const initialMonsterState: MonsterState = {
           "num_tails": 1
         },
         {
+          "id": uuid(),
           "first_name": "Rumble",
           "last_name": "Stonehide",
           "description": "A sturdy monster with rocky skin and seismic powers.",
@@ -145,6 +158,7 @@ export const initialMonsterState: MonsterState = {
           "num_tails": 1
         },
         {
+          "id": uuid(),
           "first_name": "Wisp",
           "last_name": "Shadowglimmer",
           "description": "A mysterious monster with wispy tendrils and shadowy abilities.",
@@ -159,4 +173,10 @@ export const initialMonsterState: MonsterState = {
       ]
 }
 
-export const MonsterContext = createContext(initialMonsterState)
+export const MonsterContext = createContext<{
+  state: MonsterState
+  dispatch: React.Dispatch<Action>}>
+({
+  state: initialMonsterState,
+  dispatch: () => null
+})
